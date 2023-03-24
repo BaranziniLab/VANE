@@ -49,15 +49,6 @@ $ curl (link)
 $ unzip file
 ```
 
-#### To quickly work with VANE the file format shoud be:
-
-
-    Vane/
-    ├── basefiles               # Base files 
-    ├── envs                    # Envs files 
-    ├── VANE                   # Vane file
-    ├── LICENSE
-    └── README.md
 
 # Quick Start
 
