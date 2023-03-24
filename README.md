@@ -11,10 +11,9 @@ VANE is able to process either a list of Tagging SNPs, or a list of fine-mapped 
 
 # Installation
 
-Install dependencies either using PIP or Conda.
+## 1. Install dependencies either using PIP or Conda.
 
-
-## Installation using PIP:
+### Installation using PIP:
 
 ```
 $ git clone https://github.com/BaranziniLab/VANE.git
@@ -22,7 +21,7 @@ $ cd VANE/envs/
 $ pip install -r requirements_pip.txt
 ```
 
-## Installation using Conda: 
+### Installation using Conda: 
 
 ```
 $ git clone https://github.com/BaranziniLab/VANE.git
@@ -30,6 +29,26 @@ $ cd VANE/envs/
 $ conda env create -f environment-vane.yml
 $ conda activate vane
 ```
+
+## 2. Download base files.
+
+VANE needs multiple cleaned and processed files to work. You can download the base file folder from: (link)
+
+#### Linux:
+
+```
+$ cd VANE
+$ wget (link)
+$ unzip file
+```
+#### Mac:
+
+```
+$ cd VANE
+$ curl (link)
+$ unzip file
+```
+
 
 # Quick Start
 
