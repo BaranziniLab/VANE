@@ -33,6 +33,6 @@ $ conda activate vane
 
 # Quick Start
 
-### Complete Pipeline processing of subset of autoimmune related variants
+### Complete example of creating cellular-level network for a subset of autoimmune-related tagging variants
 
 
