@@ -25,9 +25,14 @@ $ pip install -r requirements_pip.txt
 ## Installation using Conda: 
 
 ```
-$ git clone [https://github.com/uber/causalml.git](https://github.com/BaranziniLab/VANE.git)
+$ git clone https://github.com/uber/causalml.git](https://github.com/BaranziniLab/VANE.git
 $ cd VANE/envs/
 $ conda env create -f environment-vane.yml
 $ conda activate vane
 ```
+
+# Quick Start
+
+### Complete Pipeline processing of subset of autoimmune related variants
+
 
