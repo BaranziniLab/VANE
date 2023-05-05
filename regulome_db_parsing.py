@@ -4,7 +4,6 @@ import re
 from bs4 import BeautifulSoup
 
 
-
 def regulome_parse_snp(position, chromosome):
 
     """Integer Position at the Build CH38
@@ -12,12 +11,18 @@ def regulome_parse_snp(position, chromosome):
 
     position_b = position
     position_a = position - 1 
+    
     r = requests.get("https://beta.regulomedb.org/regulome-search?regions=chr{chr}%3A{position_a}-{position_b}&genome=GRCh38/thumbnail=chromatin".format(position_a = position_a,
-    position_b = position_b, chr = chromosome))
+        position_b = position_b, chr = chromosome), verify=False)
+    
+
     soup = BeautifulSoup(r.text, 'html.parser')
     table = soup.find('table', class_='table-sortable')
-    df = pd.read_html(str(table))[0]
-
+    try:
+        df = pd.read_html(str(table))[0]
+    except ValueError:
+        df = pd.DataFrame()
+        
     return df
 
 def score_assign(df_results):
