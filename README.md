@@ -50,6 +50,19 @@ $ unzip b5hbzpl84v73lz0d2tt72gsi2vvftpz3.zip
 ```
 
 
+> **A:** Your VANE folder and files, should look exactly like *this*.
+
+    VANE
+    ├── ...
+    ├── base_files                   
+    │   ├── cell_networks          # Folders with all the cell networks
+    │   ├── clean_snp2gene.db         # SNP2 Gene SQL db from OpenTargets
+    │   └── gene_protein_ensembl_map_table.tsv                # Gene-protein-ENSG_id mapping tables
+    ├── VANE.py
+    ├── snp_parser.py
+    ├── regulome_db_parsing.py
+    └── ld_parser.py
+
 # Quick Start
 
 ### Complete example of creating cellular-level network for a subset of autoimmune-related tagging variants
