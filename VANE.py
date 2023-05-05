@@ -16,8 +16,6 @@ class VANE:
 
     def __init__(self, list_of_variants = None, mapping_table_dir = None, sql_dir = None):
         """list of variants: List composed of tagging SNPs in rsid format."""
-        #if sql_dir == None:
-            #self.sql_dir = "/pool0/home/secret/snp2gene_clean/snp2_gene_sql/clean_snp2gene.db"
         
         if mapping_table_dir == None:
             mapping_table = pd.read_table('base_files/gene_protein_ensembl_map_table.tsv')
@@ -382,5 +380,3 @@ class VANE_network():
         figure.set(xlabel='Edge Count', ylabel='Frequency in bootstrapping')
 
         return figure
-
-        
