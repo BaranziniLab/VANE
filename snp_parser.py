@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd 
 import myvariant
 
-def get_position_snp(rsid):
+def get_position_snp(rsid, verbose):
     """Query MyVariant to get the HG38 position at each rsID. """
     mv = myvariant.MyVariantInfo()
     query = mv.query('dbsnp.rsid:{}'.format(rsid),  assembly='hg38', fields='dbsnp')
@@ -19,33 +19,42 @@ def get_position_snp(rsid):
         try:
             hg38 = str(query['hits'][0]['dbsnp']['hg38']['start'])
         except:
-            print('{rsid} not found position'.format(rsid=rsid))
+            if verbose:
+                print('{rsid} not found position'.format(rsid=rsid))
             hg38 = -1
 
         df_snp = pd.DataFrame(zip([chromosome], [hg38], [ref], [alt], [rsid]), columns = ['chromosome', 'position', 'ref', 'alt', 'rsid'])
     else:
-        print("Variant {variant} not found in MyVariant.info".format(variant=rsid))
+
+        if verbose:
+            print("Variant {variant} not found in MyVariant.info".format(variant=rsid))
         df_snp = pd.DataFrame(columns=['chromosome', 'position', 'ref', 'alt', 'rsid'])
 
     return df_snp
 
-def create_df_for_locus(list_rs_ids, tagging_snp):
+def create_df_for_locus(list_rs_ids, tagging_snp, verbose):
     """Accept List of rsids, and outputs a clean DF with positions at hg38, ref and alt allele.
     Tagging snp: is a rsid string"""
     list_of_df = []
 
     for variant in list_rs_ids:
         
-        df_rsid = get_position_snp(variant)
+        df_rsid = get_position_snp(variant, verbose)
         list_of_df.append(df_rsid)
     
-    df_result = pd.concat(list_of_df)
-    df_result.dropna(inplace=True)
-    df_result = df_result.loc[df_result['position'] != -1]
-    df_result['position'] = df_result['position'].astype(int)
-    df_result['tagging_snp'] = tagging_snp
-    variant_number = len(df_result)
-    print('There are total of {numb} mapped variants in LD with the tagging SNP'.format(numb = variant_number))
+    if len(list_of_df) > 0:
+
+        df_result = pd.concat(list_of_df)
+        df_result.dropna(inplace=True)
+        df_result = df_result.loc[df_result['position'] != -1]
+        df_result['position'] = df_result['position'].astype(int)
+        df_result['tagging_snp'] = tagging_snp
+        variant_number = len(df_result)
+
+    else:
+        df_result = pd.DataFrame()
+    if verbose:
+        print('There are total of {numb} mapped variants in LD with the tagging SNP'.format(numb = variant_number))
     return df_result
 
 
