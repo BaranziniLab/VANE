@@ -20,7 +20,7 @@ class VANE:
             #self.sql_dir = "/pool0/home/secret/snp2gene_clean/snp2_gene_sql/clean_snp2gene.db"
         
         if mapping_table_dir == None:
-            mapping_table = pd.read_table('/base_files/gene_protein_ensembl_map_table.tsv')
+            mapping_table = pd.read_table('base_files/gene_protein_ensembl_map_table.tsv')
 
         self.mapping_table = mapping_table
         self.tagging_snps = list_of_variants
